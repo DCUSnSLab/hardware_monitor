@@ -1,0 +1,1656 @@
+Script started on 2023-12-18 20:08:36+09:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="72" LINES="16"]
+l]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor[00m$ l[Klsssource .bashrc[A]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor[00m$ ls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csource .bashrc[A]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor[00m$ lss[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcd scripts/
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ ls [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ks
+[0m[01;32msendHunter.py[0m  [01;32musage.py[0m
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ p[Kpy thon3 sendHunter.py 
+[31m[ERROR] [1702897729.983639]: Unable to immediately register with master node [http://localhost:11311]: master may not be running yet. Will keep trying.
+[0mCPU Percentage usage: 5.3%
+|Device 0| Mem Free: 10691.83MB / 12288.00MB | gpu-util: 1.0% | gpu-mem: 1.0% |
+1
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10695.89MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.6%
+|Device 0| Mem Free: 10695.89MB / 12288.00MB | gpu-util: 1.0% | gpu-mem: 1.0% |
+1
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10695.89MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 4.4%
+|Device 0| Mem Free: 10695.45MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.04 GB
+RAM Used: 0.85 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.7%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.04 GB
+RAM Used: 0.85 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.3%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.04 GB
+RAM Used: 0.85 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.7%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 6.0% | gpu-mem: 2.0% |
+6
+RAM Total: 31.31 GB
+RAM Available: 30.04 GB
+RAM Used: 0.85 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 5.6%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 4.0%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.9%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.4%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.0%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.4%
+|Device 0| Mem Free: 10695.08MB / 12288.00MB | gpu-util: 4.0% | gpu-mem: 1.0% |
+4
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.2%
+|Device 0| Mem Free: 10695.95MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.8%
+|Device 0| Mem Free: 10695.95MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.6%
+|Device 0| Mem Free: 10689.70MB / 12288.00MB | gpu-util: 7.0% | gpu-mem: 2.0% |
+7
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.8%
+|Device 0| Mem Free: 10689.45MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.5%
+|Device 0| Mem Free: 10689.45MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.4%
+|Device 0| Mem Free: 10689.45MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.8%
+|Device 0| Mem Free: 10690.33MB / 12288.00MB | gpu-util: 3.0% | gpu-mem: 1.0% |
+3
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10690.33MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 4.3%
+|Device 0| Mem Free: 10690.33MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.7%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.04 GB
+RAM Used: 0.85 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+^C
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ 
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ python3 sendHunter.py 
+CPU Percentage usage: 8.3%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.0%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.7%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.9%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.3%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.4%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.7%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.0%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.8%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.3%
+|Device 0| Mem Free: 10690.27MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.9%
+|Device 0| Mem Free: 10690.83MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.3%
+|Device 0| Mem Free: 10690.83MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.9%
+|Device 0| Mem Free: 10690.83MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.9%
+|Device 0| Mem Free: 10690.83MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.03 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.9%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 2.7%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.5%
+|Device 0| Mem Free: 10695.14MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.86 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10696.20MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.1%
+|Device 0| Mem Free: 10696.20MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+CPU Percentage usage: 3.2%
+|Device 0| Mem Free: 10696.20MB / 12288.00MB | gpu-util: 2.0% | gpu-mem: 1.0% |
+2
+RAM Total: 31.31 GB
+RAM Available: 30.02 GB
+RAM Used: 0.87 GB
+RAM Percentage usage: 4.1%
+4.1
+BOEUN-Windows : 127.0.1.1
+^C]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ [K]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ [K]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ [K]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ 
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ ks[K[Kls
+[0m[01;32msendHunter.py[0m  [01;32musage.py[0m
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ lspython3 sendHunter.py [C[C[C[C[Cls[K[Klspython3 sendHunter.py [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K usage.py 
+^CTraceback (most recent call last):
+  File "usage.py", line 24, in <module>
+    gpuUsage()
+  File "usage.py", line 20, in gpuUsage
+    hunterStatusSub = rospy.Subscriber('/hunter_status', HunterStatus, callback)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 577, in __init__
+    self.impl.add_callback(callback, callback_args)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 704, in add_callback
+    new_callbacks = self.callbacks[:]
+KeyboardInterrupt
+
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ ls[K[Kroso[Ktopic list
+/rosout
+/rosout_agg
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ rostopic list
+/clock
+/hunter_status
+/rosout
+/rosout_agg
+/tf
+/ublox/fix
+/velodyne_points
+/zed2/zed_node/imu/data
+/zed2/zed_node/imu/data_raw
+/zed2/zed_node/imu/mag
+/zed2/zed_node/left/image_rect_color/compressed
+/zed2/zed_node/odom
+/zed2/zed_node/path_map
+/zed2/zed_node/pose
+/zed2/zed_node/right/image_rect_color/compressed
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ rostopic list
+/clock
+/hunter_status
+/rosout
+/rosout_agg
+/tf
+/ublox/fix
+/velodyne_points
+/zed2/zed_node/imu/data
+/zed2/zed_node/imu/data_raw
+/zed2/zed_node/imu/mag
+/zed2/zed_node/left/image_rect_color/compressed
+/zed2/zed_node/odom
+/zed2/zed_node/path_map
+/zed2/zed_node/pose
+/zed2/zed_node/right/image_rect_color/compressed
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ rostopic list[C[C[C[C[C[Krostopic list[C[C[C[C[Cpython3 usage.py [C[C[C[C[Cls[Kpython3 sendHunter.py [C[C[C[C[Cls[Kpython3 usage.py 
+^CTraceback (most recent call last):
+  File "usage.py", line 21, in <module>
+    gpuUsage()
+  File "usage.py", line 18, in gpuUsage
+    hunterStatusSub = rospy.Subscriber('/hunter_status', HunterStatus, callback)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 577, in __init__
+    self.impl.add_callback(callback, callback_args)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 706, in add_callback
+    self.callbacks = new_callbacks
+KeyboardInterrupt
+
+]0;ppos2eun@BOEUN-Windows: ~/SCV/src/scv_system/hardware_monitor/scripts[01;32mppos2eun@BOEUN-Windows[00m:[01;34m~/SCV/src/scv_system/hardware_monitor/scripts[00m$ tosto[K[K[K[K[Krosop[K[Ktopic list [K[K[K[K[Kecho /hunter_status te[K[K[K
+header: 
+  seq: 82418
+  stamp: 
+    secs: 1675931931
+    nsecs: 906395465
+  frame_id: ''
+linear_velocity: 0.9179999828338623
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.200000762939453
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.4000000953674316
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776825.0
+  - 
+    current: 4.199999809265137
+    rpm: -2067.0
+    temperature: 34.0
+    motor_pose: 2233676.0
+  - 
+    current: 4.400000095367432
+    rpm: 2187.0
+    temperature: 33.0
+    motor_pose: 2175574.0
+driver_states: 
+  - 
+    driver_voltage: 28.799999237060547
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.399999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.399999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82419
+  stamp: 
+    secs: 1675931931
+    nsecs: 926429908
+  frame_id: ''
+linear_velocity: 0.9279999732971191
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.200000762939453
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.299999952316284
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776826.0
+  - 
+    current: 4.199999809265137
+    rpm: -2092.0
+    temperature: 34.0
+    motor_pose: 2225259.0
+  - 
+    current: 4.0
+    rpm: 2208.0
+    temperature: 33.0
+    motor_pose: 2184523.0
+driver_states: 
+  - 
+    driver_voltage: 28.799999237060547
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.399999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82420
+  stamp: 
+    secs: 1675931931
+    nsecs: 946415347
+  frame_id: ''
+linear_velocity: 0.9350000023841858
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.299999952316284
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776826.0
+  - 
+    current: 5.199999809265137
+    rpm: -2100.0
+    temperature: 34.0
+    motor_pose: 2221084.0
+  - 
+    current: 5.300000190734863
+    rpm: 2231.0
+    temperature: 33.0
+    motor_pose: 2189079.0
+driver_states: 
+  - 
+    driver_voltage: 28.799999237060547
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.399999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82421
+  stamp: 
+    secs: 1675931931
+    nsecs: 966428120
+  frame_id: ''
+linear_velocity: 0.9449999928474426
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.5999999046325684
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776827.0
+  - 
+    current: 5.699999809265137
+    rpm: -2110.0
+    temperature: 34.0
+    motor_pose: 2212569.0
+  - 
+    current: 6.099999904632568
+    rpm: 2269.0
+    temperature: 33.0
+    motor_pose: 2198175.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.399999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82422
+  stamp: 
+    secs: 1675931931
+    nsecs: 986392282
+  frame_id: ''
+linear_velocity: 0.953000009059906
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.9000000953674316
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776827.0
+  - 
+    current: 6.300000190734863
+    rpm: -2147.0
+    temperature: 34.0
+    motor_pose: 2203799.0
+  - 
+    current: 5.900000095367432
+    rpm: 2266.0
+    temperature: 33.0
+    motor_pose: 2207307.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82423
+  stamp: 
+    secs: 1675931932
+    nsecs:   6386254
+  frame_id: ''
+linear_velocity: 0.9629999995231628
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 3.200000047683716
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776829.0
+  - 
+    current: 6.699999809265137
+    rpm: -2174.0
+    temperature: 34.0
+    motor_pose: 2199392.0
+  - 
+    current: 6.800000190734863
+    rpm: 2289.0
+    temperature: 33.0
+    motor_pose: 2212095.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82424
+  stamp: 
+    secs: 1675931932
+    nsecs:  26436708
+  frame_id: ''
+linear_velocity: 0.9890000224113464
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 3.0
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776836.0
+  - 
+    current: 9.199999809265137
+    rpm: -2229.0
+    temperature: 34.0
+    motor_pose: 2190170.0
+  - 
+    current: 9.199999809265137
+    rpm: 2351.0
+    temperature: 33.0
+    motor_pose: 2221511.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82425
+  stamp: 
+    secs: 1675931932
+    nsecs:  46428107
+  frame_id: ''
+linear_velocity: 1.0210000276565552
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.700000047683716
+    rpm: 2.0
+    temperature: -30.0
+    motor_pose: 16776847.0
+  - 
+    current: 7.900000095367432
+    rpm: -2399.0
+    temperature: 34.0
+    motor_pose: 2179888.0
+  - 
+    current: 7.599999904632568
+    rpm: 2331.0
+    temperature: 33.0
+    motor_pose: 2230778.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82426
+  stamp: 
+    secs: 1675931932
+    nsecs:  66433578
+  frame_id: ''
+linear_velocity: 1.0410000085830688
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.5
+    rpm: 2.0
+    temperature: -29.0
+    motor_pose: 16776856.0
+  - 
+    current: 6.900000095367432
+    rpm: -2501.0
+    temperature: 34.0
+    motor_pose: 2174607.0
+  - 
+    current: 7.300000190734863
+    rpm: 2323.0
+    temperature: 33.0
+    motor_pose: 2235437.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82427
+  stamp: 
+    secs: 1675931932
+    nsecs:  86393255
+  frame_id: ''
+linear_velocity: 1.0579999685287476
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 2.0
+    rpm: 4.0
+    temperature: -29.0
+    motor_pose: 16776876.0
+  - 
+    current: 8.399999618530273
+    rpm: -2559.0
+    temperature: 34.0
+    motor_pose: 2164572.0
+  - 
+    current: 8.5
+    rpm: 2342.0
+    temperature: 33.0
+    motor_pose: 2244975.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82428
+  stamp: 
+    secs: 1675931932
+    nsecs: 106437513
+  frame_id: ''
+linear_velocity: 1.0520000457763672
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.2999999523162842
+    rpm: 3.0
+    temperature: -29.0
+    motor_pose: 16776884.0
+  - 
+    current: 7.5
+    rpm: -2464.0
+    temperature: 34.0
+    motor_pose: 2154964.0
+  - 
+    current: 8.100000381469727
+    rpm: 2409.0
+    temperature: 33.0
+    motor_pose: 2254818.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82429
+  stamp: 
+    secs: 1675931932
+    nsecs: 126425278
+  frame_id: ''
+linear_velocity: 1.0540000200271606
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.100000023841858
+    rpm: 2.0
+    temperature: -29.0
+    motor_pose: 16776883.0
+  - 
+    current: 7.0
+    rpm: -2439.0
+    temperature: 34.0
+    motor_pose: 2150112.0
+  - 
+    current: 6.699999809265137
+    rpm: 2442.0
+    temperature: 33.0
+    motor_pose: 2259825.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82430
+  stamp: 
+    secs: 1675931932
+    nsecs: 146421033
+  frame_id: ''
+linear_velocity: 1.065999984741211
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.8999999761581421
+    rpm: 0.0
+    temperature: -29.0
+    motor_pose: 16776880.0
+  - 
+    current: 5.900000095367432
+    rpm: -2413.0
+    temperature: 34.0
+    motor_pose: 2140674.0
+  - 
+    current: 5.400000095367432
+    rpm: 2523.0
+    temperature: 33.0
+    motor_pose: 2270199.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82431
+  stamp: 
+    secs: 1675931932
+    nsecs: 166415785
+  frame_id: ''
+linear_velocity: 1.062999963760376
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.30000001192092896
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776873.0
+  - 
+    current: 4.5
+    rpm: -2308.0
+    temperature: 34.0
+    motor_pose: 2131682.0
+  - 
+    current: 5.099999904632568
+    rpm: 2616.0
+    temperature: 33.0
+    motor_pose: 2280926.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82432
+  stamp: 
+    secs: 1675931932
+    nsecs: 186384690
+  frame_id: ''
+linear_velocity: 1.065000057220459
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.4000000059604645
+    rpm: -1.0
+    temperature: -30.0
+    motor_pose: 16776868.0
+  - 
+    current: 3.4000000953674316
+    rpm: -2284.0
+    temperature: 34.0
+    motor_pose: 2127040.0
+  - 
+    current: 3.5
+    rpm: 2650.0
+    temperature: 33.0
+    motor_pose: 2286277.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82433
+  stamp: 
+    secs: 1675931932
+    nsecs: 206432139
+  frame_id: ''
+linear_velocity: 1.0870000123977661
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.699999988079071
+    rpm: -2.0
+    temperature: -30.0
+    motor_pose: 16776856.0
+  - 
+    current: 2.5999999046325684
+    rpm: -2412.0
+    temperature: 34.0
+    motor_pose: 2116646.0
+  - 
+    current: 2.5999999046325684
+    rpm: 2624.0
+    temperature: 33.0
+    motor_pose: 2296422.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82434
+  stamp: 
+    secs: 1675931932
+    nsecs: 226436278
+  frame_id: ''
+linear_velocity: 1.1009999513626099
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.20000000298023224
+    rpm: -2.0
+    temperature: -30.0
+    motor_pose: 16776844.0
+  - 
+    current: 5.0
+    rpm: -2592.0
+    temperature: 34.0
+    motor_pose: 2105973.0
+  - 
+    current: 5.400000095367432
+    rpm: 2510.0
+    temperature: 33.0
+    motor_pose: 2306341.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82435
+  stamp: 
+    secs: 1675931932
+    nsecs: 246391680
+  frame_id: ''
+linear_velocity: 1.1139999628067017
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.8999999761581421
+    rpm: -3.0
+    temperature: -30.0
+    motor_pose: 16776833.0
+  - 
+    current: 4.699999809265137
+    rpm: -2639.0
+    temperature: 34.0
+    motor_pose: 2100582.0
+  - 
+    current: 4.699999809265137
+    rpm: 2521.0
+    temperature: 33.0
+    motor_pose: 2311721.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82436
+  stamp: 
+    secs: 1675931932
+    nsecs: 266415328
+  frame_id: ''
+linear_velocity: 1.159000039100647
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.5
+    rpm: -2.0
+    temperature: -29.0
+    motor_pose: 16776833.0
+  - 
+    current: 2.5999999046325684
+    rpm: -2689.0
+    temperature: 34.0
+    motor_pose: 2089731.0
+  - 
+    current: 2.200000047683716
+    rpm: 2678.0
+    temperature: 33.0
+    motor_pose: 2322884.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 28.899999618530273
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82437
+  stamp: 
+    secs: 1675931932
+    nsecs: 286387569
+  frame_id: ''
+linear_velocity: 1.1799999475479126
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.800000011920929
+    rpm: 0.0
+    temperature: -29.0
+    motor_pose: 16776833.0
+  - 
+    current: 1.7000000476837158
+    rpm: -2711.0
+    temperature: 34.0
+    motor_pose: 2078849.0
+  - 
+    current: 1.7999999523162842
+    rpm: 2754.0
+    temperature: 33.0
+    motor_pose: 2333944.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82438
+  stamp: 
+    secs: 1675931932
+    nsecs: 306437423
+  frame_id: ''
+linear_velocity: 1.1829999685287476
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.6000000238418579
+    rpm: 0.0
+    temperature: -29.0
+    motor_pose: 16776833.0
+  - 
+    current: 1.7000000476837158
+    rpm: -2718.0
+    temperature: 34.0
+    motor_pose: 2073368.0
+  - 
+    current: 1.600000023841858
+    rpm: 2762.0
+    temperature: 33.0
+    motor_pose: 2339457.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82439
+  stamp: 
+    secs: 1675931932
+    nsecs: 326389602
+  frame_id: ''
+linear_velocity: 1.1790000200271606
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.0
+    rpm: 0.0
+    temperature: -29.0
+    motor_pose: 16776833.0
+  - 
+    current: 1.7000000476837158
+    rpm: -2711.0
+    temperature: 34.0
+    motor_pose: 2062565.0
+  - 
+    current: 1.2999999523162842
+    rpm: 2752.0
+    temperature: 33.0
+    motor_pose: 2350413.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.200000762939453
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82440
+  stamp: 
+    secs: 1675931932
+    nsecs: 346417541
+  frame_id: ''
+linear_velocity: 1.1770000457763672
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 0.800000011920929
+    rpm: 0.0
+    temperature: -29.0
+    motor_pose: 16776835.0
+  - 
+    current: 1.0
+    rpm: -2725.0
+    temperature: 34.0
+    motor_pose: 2051569.0
+  - 
+    current: 0.5
+    rpm: 2727.0
+    temperature: 33.0
+    motor_pose: 2361231.0
+driver_states: 
+  - 
+    driver_voltage: 28.600000381469727
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.200000762939453
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82441
+  stamp: 
+    secs: 1675931932
+    nsecs: 366392319
+  frame_id: ''
+linear_velocity: 1.1779999732971191
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.0
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.100000023841858
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776833.0
+  - 
+    current: 0.5
+    rpm: -2737.0
+    temperature: 34.0
+    motor_pose: 2046097.0
+  - 
+    current: 0.6000000238418579
+    rpm: 2720.0
+    temperature: 33.0
+    motor_pose: 2366774.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.200000762939453
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.0
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82442
+  stamp: 
+    secs: 1675931932
+    nsecs: 386426838
+  frame_id: ''
+linear_velocity: 1.184000015258789
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.0
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776834.0
+  - 
+    current: 2.0
+    rpm: -2731.0
+    temperature: 34.0
+    motor_pose: 2035167.0
+  - 
+    current: 1.5
+    rpm: 2754.0
+    temperature: 33.0
+    motor_pose: 2377836.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.200000762939453
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82443
+  stamp: 
+    secs: 1675931932
+    nsecs: 406437091
+  frame_id: ''
+linear_velocity: 1.180999994277954
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.399999976158142
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776830.0
+  - 
+    current: 0.699999988079071
+    rpm: -2727.0
+    temperature: 34.0
+    motor_pose: 2024319.0
+  - 
+    current: 1.2999999523162842
+    rpm: 2741.0
+    temperature: 33.0
+    motor_pose: 2388722.0
+driver_states: 
+  - 
+    driver_voltage: 28.700000762939453
+    driver_temperature: 33.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.200000762939453
+    driver_temperature: 27.0
+    driver_state: 64
+  - 
+    driver_voltage: 29.100000381469727
+    driver_temperature: 28.0
+    driver_state: 64
+---
+header: 
+  seq: 82444
+  stamp: 
+    secs: 1675931932
+    nsecs: 426375962
+  frame_id: ''
+linear_velocity: 1.1770000457763672
+steering_angle: 0.0
+base_state: 0
+control_mode: 3
+fault_code: 0
+battery_voltage: 28.100000381469727
+park_mode: 0
+motor_states: 
+  - 
+    current: 1.399999976158142
+    rpm: 0.0
+    temperature: -30.0
+    motor_pose: 16776830.0
+  - 
+    current: 1.100000023841858
+    rpm: -2716.0
+    temperature: 34.0
+    motor_pose: 2018969.0
+  - 
+    current: 1.600000023841858
+    rpm: 2736.0
+    temperature: 33.0
+    motor_pose: 2394236.0
+driver_states: 
+  - 
+    driver_voltag

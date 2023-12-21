@@ -12,12 +12,12 @@ import rosnode
 
 # class 예쁘게 만들기
 
-class scvInformation():
+class scvInformation:
     pubCpu = rospy.Publisher('/pubCpu', Float64, queue_size=10)
     pubRam = rospy.Publisher('/pubRam', Float64, queue_size=10)
     pubGpu = rospy.Publisher('/pubGpu', Float64, queue_size=10)
     pubScvIP = rospy.Publisher('/pubScvIP', String, queue_size=10)
-    pubScvStatus = rospy.Publisher('/pubScvStatus', Float32MultiArray, queue_size=10)
+    pubScvStatus = rospy.Publisher('/pubScvStatus', UInt64MultiArray, queue_size=10)
 
     def __init__(self):
         self.pubCpu.publish(self.cpuUsage())
@@ -25,6 +25,26 @@ class scvInformation():
         self.pubRam.publish(self.ramUsage())
         self.pubScvIP.publish(self.checkSCVIP())
         self.hunterStatusSub = rospy.Subscriber('/hunter_status', HunterStatus, self.callback)
+
+    def callback(self, data):
+        scvMsgArr = UInt64MultiArray()
+
+        # scvMsgArr.data = [data.base_state, data.battery_voltage, data.control_mode,
+        #                     data.fault_code, data.linear_velocity, data.park_mode, data.steering_angle,
+        #                  data.motor_states[0], data.driver_states[0]]
+
+        print(scvMsgArr.data)
+
+        # ['MOTOR_ID_FRONT', 'MOTOR_ID_REAR_LEFT', 'MOTOR_ID_REAR_RIGHT', '__class__', '__delattr__', '__dir__',
+        #  '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__',
+        #  '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__',
+        #  '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__slots__', '__str__',
+        #  '__subclasshook__', '_check_types', '_connection_header', '_full_text', '_get_types', '_has_header', '_md5sum',
+        #  '_slot_types', '_type', 'base_state', 'battery_voltage', 'control_mode', 'deserialize', 'deserialize_numpy',
+        #  'driver_states', 'fault_code', 'header', 'linear_velocity', 'motor_states', 'park_mode', 'serialize',
+        #  'serialize_numpy', 'steering_angle']
+
+        self.pubScvStatus.publish(scvMsgArr)
 
     def gpuUsage(self):
         nvidia_smi.nvmlInit()
@@ -70,11 +90,6 @@ class scvInformation():
         print(hostname, ":", ipAddressValue)
         return ipAddressValue
 
-    def callback(self, data):
-        floatMsgArr = Float32MultiArray()
-        floatMsgArr.data = [data.control_mode, data.base_state, data.park_mode,
-            data.battery_voltage, data.linear_velocity, data.steering_angle]
-        self.pubScvStatus.publish(floatMsgArr)
 
 
 if __name__ == '__main__':
