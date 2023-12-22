@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
 import time
 import rospy
-import sensor_msgs.msg
 from std_msgs.msg import *
 from hunter_msgs.msg import *
 import psutil
 import nvidia_smi
 import socket
-import rosnode
-
+from math import pi
 
 # class 예쁘게 만들기
+flag = 0
+
 
 class scvInformation:
+    flag = 0
     pubCpu = rospy.Publisher('/pubCpu', Float64, queue_size=10)
     pubRam = rospy.Publisher('/pubRam', Float64, queue_size=10)
     pubGpu = rospy.Publisher('/pubGpu', Float64, queue_size=10)
     pubScvIP = rospy.Publisher('/pubScvIP', String, queue_size=10)
-    pubScvStatus = rospy.Publisher('/pubScvStatus', UInt64MultiArray, queue_size=10)
+    pubScvStatus = rospy.Publisher('/pubScvStatus', Float64MultiArray, queue_size=10)
 
     def __init__(self):
         self.pubCpu.publish(self.cpuUsage())
@@ -25,26 +26,43 @@ class scvInformation:
         self.pubRam.publish(self.ramUsage())
         self.pubScvIP.publish(self.checkSCVIP())
         self.hunterStatusSub = rospy.Subscriber('/hunter_status', HunterStatus, self.callback)
+        self.scvMsgArr = Float64MultiArray()
+        self.driver_states_arr = [[0,0,0], [0,0,0], [0,0,0]]
+        self.motor_states_arr = [[0,0,0,0], [0,0,0,0], [0,0,0,0]]
+        # self.driver_states_arr = [[],[],[]]
+        # self.motor_states_arr = [[],[],[]]
+
+
+    def convertToPercent(self, whole, part):
+        return round(part / whole * 100, 2)
 
     def callback(self, data):
-        scvMsgArr = UInt64MultiArray()
+        global flag
+        for i in range(3):
+            self.driver_states_arr[i] = [data.driver_states[i].driver_voltage,
+                                         data.driver_states[i].driver_temperature,
+                                         data.driver_states[i].driver_state]
+            self.motor_states_arr[i] = [data.motor_states[i].current,
+                                        data.motor_states[i].rpm,
+                                        data.motor_states[i].temperature,
+                                        data.motor_states[i].motor_pose]
 
-        # scvMsgArr.data = [data.base_state, data.battery_voltage, data.control_mode,
-        #                     data.fault_code, data.linear_velocity, data.park_mode, data.steering_angle,
-        #                  data.motor_states[0], data.driver_states[0]]
+        batteryPercent = self.convertToPercent(27.9, data.battery_voltage)
+        # max linear velocity : 1.5 m/s, linear_velocity 값 m/s -> km/s
+        mToKmVelocity = round(data.linear_velocity / 1000, 4)
+        # steering angle + : 왼쪽, - : 오른쪽
+        steeringToRadian = round(data.steering_angle * (180 / pi), 2)
 
-        print(scvMsgArr.data)
+        if flag < 3:
+            flag += 1
+        else:
+            print("batteryVoltage", batteryPercent, "% ", "velocity", mToKmVelocity, "km/s ", "steering angle", steeringToRadian,"˚")
+            flag = 0
 
-        # ['MOTOR_ID_FRONT', 'MOTOR_ID_REAR_LEFT', 'MOTOR_ID_REAR_RIGHT', '__class__', '__delattr__', '__dir__',
-        #  '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__',
-        #  '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__',
-        #  '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__slots__', '__str__',
-        #  '__subclasshook__', '_check_types', '_connection_header', '_full_text', '_get_types', '_has_header', '_md5sum',
-        #  '_slot_types', '_type', 'base_state', 'battery_voltage', 'control_mode', 'deserialize', 'deserialize_numpy',
-        #  'driver_states', 'fault_code', 'header', 'linear_velocity', 'motor_states', 'park_mode', 'serialize',
-        #  'serialize_numpy', 'steering_angle']
+        self.scvMsgArr.data = [data.base_state, data.battery_voltage, data.control_mode, data.fault_code, data.linear_velocity, data.park_mode,
+                               data.steering_angle, self.motor_states_arr, self.driver_states_arr]
+        # self.pubScvStatus.publish(self.scvMsgArr)
 
-        self.pubScvStatus.publish(scvMsgArr)
 
     def gpuUsage(self):
         nvidia_smi.nvmlInit()

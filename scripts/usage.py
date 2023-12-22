@@ -23,6 +23,7 @@ class usage:
         # self.driver_states_rareLeft = []
         # self.driver_states_rareRight = []
         #
+        #
         # self.motor_states_front = []
         # self.motor_states_rareLeft = []
         # self.motor_states_rareRight = []
@@ -59,4 +60,4 @@ if __name__ == '__main__':
 
     while not rospy.is_shutdown():
         scvIn = usage()
-        time.sleep(1)
+        time.sleep(5)
