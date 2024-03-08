@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
-    <node pkg="hardware_monitor" type="sendHunter.py" name="scvStatus" output="screen"/>
+    <node pkg="hardware_monitor" type="sendHunter.py" name="sendHunter" output="screen"/>
+    <node pkg="hardware_monitor" type="add_two_ints.py" name="add_two_ints" output="screen"/>
     <node pkg="tf2_web_republisher" type="tf2_web_republisher" name="tf2_web_republisher" output="screen"/>
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
 </launch>

@@ -7,6 +7,7 @@ project(hardware_monitor)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
 find_package(catkin REQUIRED COMPONENTS
     roscpp
     rospy
@@ -55,7 +56,8 @@ add_message_files(
 ## Generate services in the 'srv' folder
 add_service_files(
 	FILES
-	AddTwoInts.srv
+	Logging.srv
+	VehicleControl.srv
 )
 
 ## Generate actions in the 'action' folder
