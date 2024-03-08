@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import time
 import rospy
 from std_msgs.msg import *
@@ -7,8 +7,7 @@ import psutil
 import nvidia_smi
 import socket
 from math import pi
-from hardware_monitor.srv import AddTwoInts
-
+from hardware_monitor import *
 
 class scvInformation:
 
@@ -73,22 +72,9 @@ class scvInformation:
         # print(hostname, ":", ipAddressValue)
         return ipAddressValue
 
-def handle_service(request):
-    result = request.a + request.b
-    rospy.loginfo("Sum: %s", result)
-    return result
+if __name__ == '__main__':
+    rospy.init_node('scvStatus', anonymous=True)
 
-def main():
-    rospy.init_node('add_two_ints_server')
-    service = rospy.Service('add_two_ints', AddTwoInts, handle_service)
-    rospy.spin()
-
-if __name__ == "__main__":
-    main()
-
-# if __name__ == '__main__':
-#     rospy.init_node('scvStatus', anonymous=True)
-#
-#     while not rospy.is_shutdown():
-#         scvIn = scvInformation()
-#         time.sleep(1)
+    while not rospy.is_shutdown():
+        scvIn = scvInformation()
+        time.sleep(1)
