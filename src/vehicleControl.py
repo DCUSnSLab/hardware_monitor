@@ -1,16 +1,14 @@
 import rospy
 from hardware_monitor.srv import VehicleControl
 from geometry_msgs.msg import Twist
-import threading
-
 
 def handle_vehicle_control(req):
-    msg = Twist()
 
+    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
     result = req.scvStatus
 
     startMsg = Twist()
-    startMsg.linear.x = 0.0
+    startMsg.linear.x = 1
     startMsg.linear.y = 0.0
     startMsg.linear.z = 0.0
     startMsg.angular.x = 0.0
@@ -18,7 +16,7 @@ def handle_vehicle_control(req):
     startMsg.angular.z = 0.0
 
     stopMsg = Twist()
-    stopMsg.linear.x = 0.5
+    stopMsg.linear.x = 0.0
     stopMsg.linear.y = 0.0
     stopMsg.linear.z = 0.0
     stopMsg.angular.x = 0.0
@@ -39,7 +37,6 @@ def handle_vehicle_control(req):
         return 0
 
 if __name__ == '__main__':
-    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 
     rospy.init_node("SCV_Control_Server")
     rospy.loginfo("Vehicle Control Server start")

@@ -7,7 +7,6 @@ import psutil
 import nvidia_smi
 import socket
 from math import pi
-from hardware_monitor import *
 
 class scvInformation:
 
@@ -16,10 +15,6 @@ class scvInformation:
     pubRam = rospy.Publisher('/pubRam', Float64, queue_size=10)
     pubGpu = rospy.Publisher('/pubGpu', Float64, queue_size=10)
     pubScvIP = rospy.Publisher('/pubScvIP', String, queue_size=10)
-
-    # int8 MOTOR_ID_FRONT = 0
-    # int8 MOTOR_ID_REAR_LEFT = 1
-    # int8 MOTOR_ID_REAR_RIGHT = 2
 
     def __init__(self):
         self.pubCpu.publish(self.cpuUsage())
@@ -40,7 +35,8 @@ class scvInformation:
             #     f"| gpu-util: {util.gpu / 100.0:3.1%} | gpu-mem: {util.memory / 100.0:3.1%} |")
             gpuUsageValue = util.gpu
             gpuMempercent = {util.memory / 100.0}
-            # print(gpuUsageValue)
+            # print(f"gpuUsageValue: {gpuUsageValue}")
+            # print(f"gpuUsageValue: {gpuUsageValue}")
             return gpuUsageValue
 
     def cpuUsage(self):
@@ -49,7 +45,7 @@ class scvInformation:
         # print(f"CPU Percentage usage: {cpuUsageValue}%")
         # CPU frequency
         # cpu_info = psutil.cpu_freq()
-        # print(f"CPU Current frequency: {cpu_info.current:.2f} Mhz")
+        # print(f"CPU Current frequency: {cpuUsageValue}")
         return cpuUsageValue
 
     def ramUsage(self):
@@ -57,12 +53,12 @@ class scvInformation:
         # print(f"RAM Total: {ram_info.total / 1024 / 1024 / 1024:.2f} GB")
         # print(f"RAM Available: {ram_info.available / 1024 / 1024 / 1024:.2f} GB")
         # print(f"RAM Used: {ram_info.used / 1024 / 1024 / 1024:.2f} GB")
-        # print(f"RAM Percentage usage: {ram_info.percent}%")
+        #print(f"RAM Percentage usage: {ram_info.percent}%")
         ramTotalGB = {ram_info.total / 1024 / 1024 / 1024: .2}
         ramAvailableGB = {ram_info.available / 1024 / 1024 / 1024: .2}
         ramUsedGB = {ram_info.used / 1024 / 1024 / 1024}
         ramUsageValue = ram_info.percent
-        # print(ramUsageValue)
+        # print(f"RAM Percentage usage: {ramUsageValue}%")
         return ramUsageValue
 
     def checkSCVIP(self):
