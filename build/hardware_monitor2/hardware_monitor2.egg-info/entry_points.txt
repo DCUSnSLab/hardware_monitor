@@ -1,4 +1,0 @@
-[console_scripts]
-add_two_ints = hardware_monitor2.add_two_ints:main
-send_hunter = hardware_monitor2.send_hunter:main
-

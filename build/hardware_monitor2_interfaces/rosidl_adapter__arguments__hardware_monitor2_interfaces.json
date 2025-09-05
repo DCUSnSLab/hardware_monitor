@@ -1,6 +1,0 @@
-{
-  "package_name": "hardware_monitor2_interfaces",
-  "non_idl_tuples": [
-    "/home/yeon/hardware_monitor/src/hardware_monitor2_interfaces:srv/Logging.srv"
-  ]
-}

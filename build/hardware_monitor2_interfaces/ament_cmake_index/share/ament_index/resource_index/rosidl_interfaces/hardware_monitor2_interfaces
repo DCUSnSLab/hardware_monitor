@@ -1,4 +1,0 @@
-srv/Logging.idl
-srv/Logging.srv
-srv/Logging_Request.msg
-srv/Logging_Response.msg

@@ -1,1 +1,0 @@
-/home/yeon/hardware_monitor/src/hardware_monitor2/launch/launch.py

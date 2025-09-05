@@ -1,2 +1,0 @@
-
-string logging_status

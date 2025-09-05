@@ -1,6 +1,0 @@
-Invoking command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces': /usr/bin/cmake /home/yeon/hardware_monitor/src/hardware_monitor2_interfaces -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/yeon/hardware_monitor/install/hardware_monitor2_interfaces
-Invoked command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces' returned '0': /usr/bin/cmake /home/yeon/hardware_monitor/src/hardware_monitor2_interfaces -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/yeon/hardware_monitor/install/hardware_monitor2_interfaces
-Invoking command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces': /usr/bin/cmake --build /home/yeon/hardware_monitor/build/hardware_monitor2_interfaces -- -j16 -l16
-Invoked command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces' returned '0': /usr/bin/cmake --build /home/yeon/hardware_monitor/build/hardware_monitor2_interfaces -- -j16 -l16
-Invoking command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces': /usr/bin/cmake --install /home/yeon/hardware_monitor/build/hardware_monitor2_interfaces
-Invoked command in '/home/yeon/hardware_monitor/build/hardware_monitor2_interfaces' returned '0': /usr/bin/cmake --install /home/yeon/hardware_monitor/build/hardware_monitor2_interfaces
