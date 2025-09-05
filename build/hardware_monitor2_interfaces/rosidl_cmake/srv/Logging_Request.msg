@@ -1,0 +1,1 @@
+string is_logging

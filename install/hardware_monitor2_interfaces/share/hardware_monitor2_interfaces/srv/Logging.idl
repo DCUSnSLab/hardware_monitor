@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from hardware_monitor2_interfaces/srv/Logging.srv
+// generated code does not contain a copyright notice
+
+
+module hardware_monitor2_interfaces {
+  module srv {
+    struct Logging_Request {
+      string is_logging;
+    };
+    struct Logging_Response {
+      string logging_status;
+    };
+  };
+};

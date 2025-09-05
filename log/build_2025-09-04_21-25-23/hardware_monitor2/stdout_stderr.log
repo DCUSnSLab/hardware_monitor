@@ -1,0 +1,27 @@
+running develop
+/usr/lib/python3/dist-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 1.12.1-git20200711.33e2d80-dfsg1-0.6 is an invalid version and will not be supported in a future release
+  warnings.warn(
+running egg_info
+creating hardware_monitor2.egg-info
+writing hardware_monitor2.egg-info/PKG-INFO
+writing dependency_links to hardware_monitor2.egg-info/dependency_links.txt
+writing entry points to hardware_monitor2.egg-info/entry_points.txt
+writing requirements to hardware_monitor2.egg-info/requires.txt
+writing top-level names to hardware_monitor2.egg-info/top_level.txt
+writing manifest file 'hardware_monitor2.egg-info/SOURCES.txt'
+reading manifest file 'hardware_monitor2.egg-info/SOURCES.txt'
+writing manifest file 'hardware_monitor2.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/yeon/hardware_monitor/install/hardware_monitor2/lib/python3.10/site-packages/hardware-monitor2.egg-link (link to .)
+Installing add_two_ints script to /home/yeon/hardware_monitor/install/hardware_monitor2/lib/hardware_monitor2
+Installing send_hunter script to /home/yeon/hardware_monitor/install/hardware_monitor2/lib/hardware_monitor2
+
+Installed /home/yeon/hardware_monitor/build/hardware_monitor2
+running symlink_data
+creating /home/yeon/hardware_monitor/install/hardware_monitor2/share/ament_index
+creating /home/yeon/hardware_monitor/install/hardware_monitor2/share/ament_index/resource_index
+creating /home/yeon/hardware_monitor/install/hardware_monitor2/share/ament_index/resource_index/packages
+symbolically linking /home/yeon/hardware_monitor/build/hardware_monitor2/resource/hardware_monitor2 -> /home/yeon/hardware_monitor/install/hardware_monitor2/share/ament_index/resource_index/packages
+symbolically linking /home/yeon/hardware_monitor/build/hardware_monitor2/package.xml -> /home/yeon/hardware_monitor/install/hardware_monitor2/share/hardware_monitor2
+creating /home/yeon/hardware_monitor/install/hardware_monitor2/share/hardware_monitor2/launch
+symbolically linking /home/yeon/hardware_monitor/build/hardware_monitor2/launch/launch.py -> /home/yeon/hardware_monitor/install/hardware_monitor2/share/hardware_monitor2/launch

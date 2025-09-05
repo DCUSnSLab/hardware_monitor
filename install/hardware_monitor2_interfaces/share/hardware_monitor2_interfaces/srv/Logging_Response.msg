@@ -1,0 +1,2 @@
+
+string logging_status
