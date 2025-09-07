@@ -32,4 +32,11 @@ def generate_launch_description():
             name='rosbridge_websocket',
             output='screen',
         ),
+        
+        Node(
+            package='rosapi',
+            executable='rosapi_node',
+            name='rospapi',
+            output='screen',
+        ),
     ])
