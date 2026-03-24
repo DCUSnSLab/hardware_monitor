@@ -2,6 +2,7 @@
 /install
 /log
 
+# 패키지 안 build, install, log ignore
 src/**/build/
 src/**/install/
 src/**/log/
