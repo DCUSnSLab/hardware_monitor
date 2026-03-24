@@ -1,3 +1,0 @@
-[console_scripts]
-relay_bridge_node = relay_bridge.relay_bridge_node:main
-
