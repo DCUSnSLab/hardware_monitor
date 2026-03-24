@@ -1,0 +1,24 @@
+[0.396s] Invoking command in '/home/yeon/hardware_monitor/src/relay_bridge': PYTHONPATH=/home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/relay_bridge build --build-base /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build install --record /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/install.log --single-version-externally-managed install_data
+[0.494s] running egg_info
+[0.494s] writing build/relay_bridge/relay_bridge.egg-info/PKG-INFO
+[0.494s] writing dependency_links to build/relay_bridge/relay_bridge.egg-info/dependency_links.txt
+[0.494s] writing entry points to build/relay_bridge/relay_bridge.egg-info/entry_points.txt
+[0.495s] writing requirements to build/relay_bridge/relay_bridge.egg-info/requires.txt
+[0.495s] writing top-level names to build/relay_bridge/relay_bridge.egg-info/top_level.txt
+[0.495s] reading manifest file 'build/relay_bridge/relay_bridge.egg-info/SOURCES.txt'
+[0.496s] writing manifest file 'build/relay_bridge/relay_bridge.egg-info/SOURCES.txt'
+[0.496s] running build
+[0.496s] running build_py
+[0.496s] copying relay_bridge/relay_bridge_node.py -> /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge
+[0.497s] running install
+[0.497s] running install_lib
+[0.497s] copying /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge/relay_bridge_node.py -> /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge
+[0.498s] byte-compiling /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge/relay_bridge_node.py to relay_bridge_node.cpython-310.pyc
+[0.499s] running install_data
+[0.499s] running install_egg_info
+[0.500s] removing '/home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge-0.0.0-py3.10.egg-info' (and everything under it)
+[0.500s] Copying build/relay_bridge/relay_bridge.egg-info to /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge-0.0.0-py3.10.egg-info
+[0.501s] running install_scripts
+[0.510s] Installing relay_bridge_node script to /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/relay_bridge
+[0.510s] writing list of installed files to '/home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/install.log'
+[0.523s] Invoked command in '/home/yeon/hardware_monitor/src/relay_bridge' returned '0': PYTHONPATH=/home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/relay_bridge build --build-base /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build install --record /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/install.log --single-version-externally-managed install_data

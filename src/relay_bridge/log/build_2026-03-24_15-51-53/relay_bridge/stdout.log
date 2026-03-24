@@ -1,0 +1,35 @@
+running egg_info
+creating build/relay_bridge/relay_bridge.egg-info
+writing build/relay_bridge/relay_bridge.egg-info/PKG-INFO
+writing dependency_links to build/relay_bridge/relay_bridge.egg-info/dependency_links.txt
+writing entry points to build/relay_bridge/relay_bridge.egg-info/entry_points.txt
+writing requirements to build/relay_bridge/relay_bridge.egg-info/requires.txt
+writing top-level names to build/relay_bridge/relay_bridge.egg-info/top_level.txt
+writing manifest file 'build/relay_bridge/relay_bridge.egg-info/SOURCES.txt'
+reading manifest file 'build/relay_bridge/relay_bridge.egg-info/SOURCES.txt'
+writing manifest file 'build/relay_bridge/relay_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build
+creating /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib
+creating /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge
+copying relay_bridge/__init__.py -> /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge
+copying relay_bridge/relay_bridge_node.py -> /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge
+running install
+running install_lib
+creating /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge
+copying /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge/__init__.py -> /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge
+copying /home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/build/lib/relay_bridge/relay_bridge_node.py -> /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge
+byte-compiling /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge/relay_bridge_node.py to relay_bridge_node.cpython-310.pyc
+running install_data
+creating /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/share/ament_index
+creating /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/share/ament_index/resource_index
+creating /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/share/ament_index/resource_index/packages
+copying resource/relay_bridge -> /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/share/relay_bridge
+running install_egg_info
+Copying build/relay_bridge/relay_bridge.egg-info to /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/python3.10/site-packages/relay_bridge-0.0.0-py3.10.egg-info
+running install_scripts
+Installing relay_bridge_node script to /home/yeon/hardware_monitor/src/relay_bridge/install/relay_bridge/lib/relay_bridge
+writing list of installed files to '/home/yeon/hardware_monitor/src/relay_bridge/build/relay_bridge/install.log'
