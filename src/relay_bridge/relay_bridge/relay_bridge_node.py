@@ -3,6 +3,7 @@ import asyncio
 import websockets
 import json
 import threading
+import time
 
 from rclpy.node import Node
 from rosidl_runtime_py import message_to_ordereddict
@@ -177,7 +178,8 @@ class RelayBridgeNode(Node):
         data = {
             "type": "sensor_data",
             "topic": topic,
-            "data": message_to_ordereddict(msg)
+            "data": message_to_ordereddict(msg),
+            "sent_at": time.time() * 1000
         }
 
         asyncio.run_coroutine_threadsafe(
