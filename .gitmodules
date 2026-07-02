@@ -1,6 +1,7 @@
-[submodule "pkg/tf2_web_republisher"]
-	path = pkg/tf2_web_republisher
-	url = https://github.com/RobotWebTools/tf2_web_republisher.git
-[submodule "pkg/Tf2WebRepublisher"]
-	path = pkg/Tf2WebRepublisher
-	url = https://github.com/DCUSnSLab/Tf2WebRepublisher
+
+[submodule "tf2_web_republisher_py"]
+	path = tf2_web_republisher_py
+	url = https://github.com/Wisc-HCI/tf2_web_republisher_py.git
+[submodule "src/tf2_web_republisher_py"]
+	path = src/tf2_web_republisher_py
+	url = https://github.com/Wisc-HCI/tf2_web_republisher_py.git

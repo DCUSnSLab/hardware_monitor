@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.8)  # CMake 최소 버전
+project(hardware_monitor2) # 페키지 이름(xml 이름과 동일)
+
+find_package(ament_cmake REQUIRED) # CMake 빌드 시스템
+find_package(rosidl_default_generators REQUIRED) # msg, srv 빌드 및 바이딩 코드 생성
+find_package(std_msgs REQUIRED) # std_msgs 타입 가져오기
+
+ament_export_dependencies(rosidl_default_runtime) # 실행 시 인터페이스 런타임
+
+ament_package() # 패키지 마무리
