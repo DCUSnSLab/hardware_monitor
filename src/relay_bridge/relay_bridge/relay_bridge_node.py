@@ -27,12 +27,9 @@ class RelayBridgeNode(Node):
         # 차량 파라미터 설정
         self.declare_parameter("vehicle_id", "default")
         self.declare_parameter("relay_server_url", "ws://localhost:8080")
-        # 포인트 클라우드 추가 다운샘플 간격(1=추가 다운샘플 안 함, 별도 노드에서 이미 줄인 경우 1 유지)
-        self.declare_parameter("pointcloud_stride", 1)
 
         self.vehicle_id = self.get_parameter("vehicle_id").get_parameter_value().string_value
         self.server_url = self.get_parameter("relay_server_url").get_parameter_value().string_value
-        self.pc_stride = self.get_parameter("pointcloud_stride").get_parameter_value().integer_value
 
         self.get_logger().info(f"vehicle ID: {self.vehicle_id}")
         self.get_logger().info(f"Relay Server: {self.server_url}")
@@ -235,9 +232,6 @@ class RelayBridgeNode(Node):
 
     def _encode_pointcloud(self, topic, msg):
         arr, names = self._pointcloud_to_xyz(msg)
-
-        if self.pc_stride and self.pc_stride > 1:
-            arr = arr[:: self.pc_stride]
 
         payload = np.ascontiguousarray(arr, dtype="<f4").tobytes()
 
