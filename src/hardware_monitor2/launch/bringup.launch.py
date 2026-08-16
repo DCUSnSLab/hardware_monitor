@@ -1,43 +1,55 @@
 # hardware_monitor2/launch/bringup.launch.py
 #
 # 이동체 전체 실행용 통합 launch.
+# 실행하면 이동체 id / relay 주소 / bag 여부를 터미널에서 입력받는다.
+#
+#   ros2 launch hardware_monitor2 bringup.launch.py
+#     이동체 id [default]: car_1
+#     relay 서버 주소 [ws://203.250.32.54:8080]: (엔터=기본값)
+#     bag 데이터 여부 (y/t/n/f) [n]: y
+#
 # hardware_monitor2(상태 모니터 + rosbag 로깅 서버 + rosbridge/tf/rosapi)와
-# relay_bridge(중계서버 연결)를 한 번에 띄운다.
-#
-# 사용 예:
-#   ros2 launch hardware_monitor2 bringup.launch.py \
-#       vehicle_id:=car_1 relay_server_url:=ws://203.250.32.54:8080
-#
-# 개별 실행이 필요하면 기존 launch.py(모니터만) 또는
-# `ros2 run relay_bridge relay_bridge_node`를 그대로 사용하면 된다.
+# relay_bridge(중계서버 연결)를 함께 띄운다.
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
+from launch.actions import OpaqueFunction
 from launch_ros.actions import Node
 
+DEFAULT_RELAY_URL = "203.250.35.87:30808"
 
-def generate_launch_description():
-    # ---- relay_bridge 실행 인자 ----
-    vehicle_id = LaunchConfiguration('vehicle_id')
-    relay_server_url = LaunchConfiguration('relay_server_url')
 
-    declare_vehicle_id = DeclareLaunchArgument(
-        'vehicle_id',
-        default_value='default',
-        description='중계서버에 등록할 차량 ID',
-    )
-    declare_relay_server_url = DeclareLaunchArgument(
-        'relay_server_url',
-        default_value='ws://localhost:8080',
-        description='중계서버 WebSocket 주소',
-    )
+def _truthy(value):
+    # y, yes, t, true, 1 → True / 그 외(n, f, no, false...) → False
+    return str(value).strip().lower() in ("y", "yes", "t", "true", "1")
 
-    return LaunchDescription([
-        # ---- 실행 인자 선언 ----
-        declare_vehicle_id,
-        declare_relay_server_url,
 
+def _ask(prompt, default=""):
+    try:
+        answer = input(prompt).strip()
+    except EOFError:
+        answer = ""
+    return answer or default
+
+
+def _normalize_ws(url):
+    # ip:port 만 입력해도 ws:// 를 자동으로 붙인다.
+    url = url.strip()
+    if not url:
+        return url
+    if url.startswith("ws://") or url.startswith("wss://"):
+        return url
+    return "ws://" + url
+
+
+def launch_setup(context, *args, **kwargs):
+    print("아래의 값을 입력해주세요. Enter 입력 시 []안의 값으로 반영")
+    vehicle_id = _ask("ID [default]: ", "default")
+    relay_url = _normalize_ws(_ask(f"relay address [{DEFAULT_RELAY_URL}]: ", DEFAULT_RELAY_URL))
+    is_bag = _truthy(_ask("bag data (y/t/n/f) [n]: ", "n"))
+
+    print(f"[bringup] vehicle_id={vehicle_id}, relay={relay_url}, is_bag={is_bag}")
+
+    return [
         # ---- hardware_monitor2: 상태 모니터 ----
         Node(
             package='hardware_monitor2',
@@ -52,7 +64,6 @@ def generate_launch_description():
             executable='add_two_ints',
             name='add_two_ints',
             output='screen',
-            # respawn=True,
         ),
 
         # ---- rosbridge 계열(브라우저 ↔ ROS) ----
@@ -83,7 +94,14 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'vehicle_id': vehicle_id,
-                'relay_server_url': relay_server_url,
+                'relay_server_url': relay_url,
+                'is_bag': is_bag,
             }],
         ),
+    ]
+
+
+def generate_launch_description():
+    return LaunchDescription([
+        OpaqueFunction(function=launch_setup),
     ])
