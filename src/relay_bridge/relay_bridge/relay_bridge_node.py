@@ -35,6 +35,10 @@ class RelayBridgeNode(Node):
         self.get_logger().info(f"Relay Server: {self.server_url}")
 
         self.subscribed_topics = {}
+        self._last_topics = None
+
+        # 토픽 목록 변경 감지: 주기적으로 확인해 바뀌면 relay로 재전송
+        self.topic_check_timer = self.create_timer(3.0, self.check_topic_changes)
 
         self.create_subscription(
             NavSatFix,
@@ -110,6 +114,9 @@ class RelayBridgeNode(Node):
     
                             self.topic_unsubscription(topic)
 
+                        elif data["type"] == "get_topic_list":
+                            await self.send_topic_list()
+
             except Exception as e:
                 self.ws = None
                 self.get_logger().error(f"Connection error: {e}")
@@ -137,10 +144,11 @@ class RelayBridgeNode(Node):
     async def send_topic_list(self):
       topics = self.get_topic_names_and_types()
 
-      topics_info = [
-          {"name": t[0], "type": t[1][0]}
-          for t in topics
-      ]
+      topics_info = sorted(
+          [{"name": t[0], "type": t[1][0]} for t in topics],
+          key=lambda x: x["name"]
+      )
+      self._last_topics = topics_info
 
       msg = {
           "type" : "topic_list",
@@ -148,6 +156,28 @@ class RelayBridgeNode(Node):
       }
 
       await self.ws.send(json.dumps(msg))
+
+    # 토픽 목록 변경 감지 후 relay로 재전송
+    def check_topic_changes(self):
+        if not hasattr(self, "ws") or self.ws is None:
+            return
+
+        topics = self.get_topic_names_and_types()
+        topics_info = sorted(
+            [{"name": t[0], "type": t[1][0]} for t in topics],
+            key=lambda x: x["name"]
+        )
+
+        if topics_info == self._last_topics:
+            return
+
+        self._last_topics = topics_info
+        msg = {"type": "topic_list", "topics": topics_info}
+        asyncio.run_coroutine_threadsafe(
+            self.ws.send(json.dumps(msg)),
+            self.loop
+        )
+        self.get_logger().info("📡 topic_list changed → resent")
 
     # 토픽 구독
     def topic_subscription(self, topic, msg_type):
