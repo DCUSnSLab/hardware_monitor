@@ -27,9 +27,12 @@ class RelayBridgeNode(Node):
         # 차량 파라미터 설정
         self.declare_parameter("vehicle_id", "default")
         self.declare_parameter("relay_server_url", "ws://localhost:8080")
+        # bag 재생 데이터를 중계하는 경우 True로 실행 → 대시보드에서 'bag'으로 표시됨
+        self.declare_parameter("is_bag", False)
 
         self.vehicle_id = self.get_parameter("vehicle_id").get_parameter_value().string_value
         self.server_url = self.get_parameter("relay_server_url").get_parameter_value().string_value
+        self.is_bag = self.get_parameter("is_bag").get_parameter_value().bool_value
 
         self.get_logger().info(f"vehicle ID: {self.vehicle_id}")
         self.get_logger().info(f"Relay Server: {self.server_url}")
@@ -133,7 +136,8 @@ class RelayBridgeNode(Node):
             "type": "register",
             "role": "vehicle",
             "vehicle_id": self.vehicle_id,
-            "rosbridge_ip": rosbridge_ip
+            "rosbridge_ip": rosbridge_ip,
+            "is_bag": self.is_bag
         }
 
         await ws.send(json.dumps(msg))
