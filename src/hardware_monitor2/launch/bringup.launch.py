@@ -68,21 +68,9 @@ def launch_setup(context, *args, **kwargs):
 
         # ---- rosbridge 계열(브라우저 ↔ ROS) ----
         Node(
-            package='tf2_web_republisher_py',
-            executable='tf2_web_republisher',
-            name='tf2_web_republisher',
-            output='screen',
-        ),
-        Node(
             package='rosbridge_server',
             executable='rosbridge_websocket',
             name='rosbridge_websocket',
-            output='screen',
-        ),
-        Node(
-            package='rosapi',
-            executable='rosapi_node',
-            name='rosapi',
             output='screen',
         ),
 
