@@ -2,4 +2,8 @@ string is_logging      # "LoggingStart" 또는 "LoggingStop"
 string[] topics        # 기록할 토픽 목록 (비어 있으면 전체 -a)
 string bag_name        # bag 이름 (비어 있으면 서버가 현재 시각으로 생성)
 ---
+bool success
+bool is_logging
 string logging_status
+string bag_path
+string message
