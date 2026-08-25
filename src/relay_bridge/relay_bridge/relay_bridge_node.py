@@ -21,6 +21,9 @@ from geometry_msgs.msg import TwistWithCovarianceStamped, PoseStamped
 from ublox_msgs.msg import NavPVT
 from hardware_monitor2_interfaces.srv import Logging
 
+GPS_TOPIC = "/ublox_gps_node/fix"
+
+
 class RelayBridgeNode(Node):
     def __init__(self):
         super().__init__("relay_bridge_node")
@@ -46,13 +49,8 @@ class RelayBridgeNode(Node):
 
         # 토픽 목록 변경 감지: 주기적으로 확인해 바뀌면 relay로 재전송
         self.topic_check_timer = self.create_timer(3.0, self.check_topic_changes)
-
-        self.create_subscription(
-            NavSatFix,
-            "/ublox_gps_node/fix",
-            self.gps_callback,
-            10
-        )
+        self.gps_subscription = None
+        self.sync_gps_subscription()
 
         self.loop = asyncio.new_event_loop()
 
@@ -75,14 +73,33 @@ class RelayBridgeNode(Node):
             self.loop.call_soon_threadsafe(task.cancel)
         self.thread.join(timeout=5.0)
 
-    # gps callback 함수 (gps 값은 무조건 받도록)
+    def sync_gps_subscription(self):
+        """실제 GPS publisher가 존재하는 동안에만 GPS를 구독한다."""
+        has_publisher = bool(self.get_publishers_info_by_topic(GPS_TOPIC))
+
+        if has_publisher and self.gps_subscription is None:
+            self.gps_subscription = self.create_subscription(
+                NavSatFix,
+                GPS_TOPIC,
+                self.gps_callback,
+                10,
+            )
+            self.get_logger().info(f"GPS publisher detected: subscribed to {GPS_TOPIC}")
+        elif not has_publisher and self.gps_subscription is not None:
+            self.destroy_subscription(self.gps_subscription)
+            self.gps_subscription = None
+            self.get_logger().info(
+                f"GPS publisher disappeared: unsubscribed from {GPS_TOPIC}"
+            )
+
+    # GPS publisher가 실제로 있을 때만 호출되는 callback
     def gps_callback(self, msg):
         if not hasattr(self, "ws") or self.ws is None:
             return
 
         data = {
             "type": "sensor_data",
-            "topic": "/ublox_gps_node/fix",
+            "topic": GPS_TOPIC,
             "data": {
                 "lat": msg.latitude,
                 "lon": msg.longitude,
@@ -299,6 +316,8 @@ class RelayBridgeNode(Node):
 
     # 토픽 목록 변경 감지 후 relay로 재전송
     def check_topic_changes(self):
+        self.sync_gps_subscription()
+
         if not hasattr(self, "ws") or self.ws is None:
             return
 
@@ -333,7 +352,11 @@ class RelayBridgeNode(Node):
 
         self.get_logger().info(f"🔥 Subscribing to {topic}")
 
-        if topic == "/ublox_gps_node/fix":
+        if topic == GPS_TOPIC:
+            if self.gps_subscription is None:
+                self.get_logger().warning(
+                    f"GPS subscription skipped because {GPS_TOPIC} has no publisher"
+                )
             return
 
         sub = self.create_subscription(

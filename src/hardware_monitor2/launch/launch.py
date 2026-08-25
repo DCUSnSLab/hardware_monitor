@@ -20,13 +20,6 @@ def generate_launch_description():
         ),
 
         Node(
-            package='rosbridge_server',
-            executable='rosbridge_websocket',
-            name='rosbridge_websocket',
-            output='screen',
-        ),
-        
-        Node(
             package='rosapi',
             executable='rosapi_node',
             name='rospapi',

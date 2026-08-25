@@ -8,7 +8,7 @@
 #     relay 서버 주소 [ws://203.250.32.54:8080]: (엔터=기본값)
 #     bag 데이터 여부 (y/t/n/f) [n]: y
 #
-# hardware_monitor2(상태 모니터 + rosbag 로깅 서버 + rosbridge/tf/rosapi)와
+# hardware_monitor2(상태 모니터 + rosbag 로깅 서버)와
 # relay_bridge(중계서버 연결)를 함께 띄운다.
 
 from launch import LaunchDescription
@@ -63,14 +63,6 @@ def launch_setup(context, *args, **kwargs):
             package='hardware_monitor2',
             executable='add_two_ints',
             name='add_two_ints',
-            output='screen',
-        ),
-
-        # ---- rosbridge 계열(브라우저 ↔ ROS) ----
-        Node(
-            package='rosbridge_server',
-            executable='rosbridge_websocket',
-            name='rosbridge_websocket',
             output='screen',
         ),
 
