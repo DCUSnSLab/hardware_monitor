@@ -454,6 +454,12 @@ class RelayBridgeNode(Node):
 
     # 토픽 구독 해제
     def topic_unsubscription(self, topic):
+        if topic == GPS_TOPIC:
+            self.get_logger().info(
+                f"Persistent GPS unsubscribe ignored: {GPS_TOPIC}"
+            )
+            return
+
         if topic not in self.subscribed_topics:
             return
 
