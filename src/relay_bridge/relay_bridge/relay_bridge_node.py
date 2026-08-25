@@ -146,7 +146,7 @@ class RelayBridgeNode(Node):
 
                             if not topic:
                                 self.get_logger().warn(f"Invalid unsubscribe message: {data}")
-                                return
+                                continue
 
                             self.topic_unsubscription(topic)
 
