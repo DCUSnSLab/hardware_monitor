@@ -18,9 +18,19 @@ from launch_ros.actions import Node
 DEFAULT_RELAY_URL = "203.250.35.87:30808"
 
 
-def _truthy(value):
-    # y, yes, t, true, 1 → True / 그 외(n, f, no, false...) → False
-    return str(value).strip().lower() in ("y", "yes", "t", "true", "1")
+def _ask_bag_mode(prompt, default="n"):
+    choices = {
+        "y": True,
+        "t": True,
+        "n": False,
+        "f": False,
+    }
+
+    while True:
+        answer = _ask(prompt, default).lower()
+        if answer in choices:
+            return choices[answer]
+        print("잘못된 입력입니다. y, t, n, f 중 하나를 입력해주세요.")
 
 
 def _ask(prompt, default=""):
@@ -45,7 +55,7 @@ def launch_setup(context, *args, **kwargs):
     print("아래의 값을 입력해주세요. Enter 입력 시 []안의 값으로 반영")
     vehicle_id = _ask("ID [default]: ", "default")
     relay_url = _normalize_ws(_ask(f"relay address [{DEFAULT_RELAY_URL}]: ", DEFAULT_RELAY_URL))
-    is_bag = _truthy(_ask("bag data (y/t/n/f) [n]: ", "n"))
+    is_bag = _ask_bag_mode("bag data (y/t/n/f) [n]: ", "n")
 
     print(f"[bringup] vehicle_id={vehicle_id}, relay={relay_url}, is_bag={is_bag}")
 
