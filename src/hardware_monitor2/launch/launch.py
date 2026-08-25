@@ -20,20 +20,6 @@ def generate_launch_description():
         ),
 
         Node(
-            package='tf2_web_republisher',
-            executable='tf2_web_republisher_node',
-            name='tf2_web_republisher',
-            output='screen',
-        ),
-
-        Node(
-            package='rosbridge_server',
-            executable='rosbridge_websocket',
-            name='rosbridge_websocket',
-            output='screen',
-        ),
-        
-        Node(
             package='rosapi',
             executable='rosapi_node',
             name='rospapi',

@@ -8,7 +8,7 @@
 #     relay 서버 주소 [ws://203.250.32.54:8080]: (엔터=기본값)
 #     bag 데이터 여부 (y/t/n/f) [n]: y
 #
-# hardware_monitor2(상태 모니터 + rosbag 로깅 서버 + rosbridge/tf/rosapi)와
+# hardware_monitor2(상태 모니터 + rosbag 로깅 서버)와
 # relay_bridge(중계서버 연결)를 함께 띄운다.
 
 from launch import LaunchDescription
@@ -18,9 +18,19 @@ from launch_ros.actions import Node
 DEFAULT_RELAY_URL = "203.250.35.87:30808"
 
 
-def _truthy(value):
-    # y, yes, t, true, 1 → True / 그 외(n, f, no, false...) → False
-    return str(value).strip().lower() in ("y", "yes", "t", "true", "1")
+def _ask_bag_mode(prompt, default="n"):
+    choices = {
+        "y": True,
+        "t": True,
+        "n": False,
+        "f": False,
+    }
+
+    while True:
+        answer = _ask(prompt, default).lower()
+        if answer in choices:
+            return choices[answer]
+        print("잘못된 입력입니다. y, t, n, f 중 하나를 입력해주세요.")
 
 
 def _ask(prompt, default=""):
@@ -45,7 +55,7 @@ def launch_setup(context, *args, **kwargs):
     print("아래의 값을 입력해주세요. Enter 입력 시 []안의 값으로 반영")
     vehicle_id = _ask("ID [default]: ", "default")
     relay_url = _normalize_ws(_ask(f"relay address [{DEFAULT_RELAY_URL}]: ", DEFAULT_RELAY_URL))
-    is_bag = _truthy(_ask("bag data (y/t/n/f) [n]: ", "n"))
+    is_bag = _ask_bag_mode("bag data (y/t/n/f) [n]: ", "n")
 
     print(f"[bringup] vehicle_id={vehicle_id}, relay={relay_url}, is_bag={is_bag}")
 
@@ -63,26 +73,6 @@ def launch_setup(context, *args, **kwargs):
             package='hardware_monitor2',
             executable='add_two_ints',
             name='add_two_ints',
-            output='screen',
-        ),
-
-        # ---- rosbridge 계열(브라우저 ↔ ROS) ----
-        Node(
-            package='tf2_web_republisher_py',
-            executable='tf2_web_republisher',
-            name='tf2_web_republisher',
-            output='screen',
-        ),
-        Node(
-            package='rosbridge_server',
-            executable='rosbridge_websocket',
-            name='rosbridge_websocket',
-            output='screen',
-        ),
-        Node(
-            package='rosapi',
-            executable='rosapi_node',
-            name='rosapi',
             output='screen',
         ),
 

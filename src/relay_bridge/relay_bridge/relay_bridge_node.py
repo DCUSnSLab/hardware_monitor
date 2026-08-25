@@ -3,6 +3,7 @@ import asyncio
 import websockets
 import json
 import threading
+import queue
 import time
 import struct
 import numpy as np
@@ -11,7 +12,6 @@ from rclpy.node import Node
 from rosidl_runtime_py import message_to_ordereddict
 from rosidl_runtime_py.utilities import get_message
 from sensor_msgs_py import point_cloud2
-from urllib.parse import urlparse
 
 from sensor_msgs.msg import NavSatFix, JointState, Imu, PointCloud2, CameraInfo, CompressedImage, Temperature
 from hunter_msgs.msg import HunterStatus
@@ -19,6 +19,10 @@ from nav_msgs.msg import Odometry
 from tf2_msgs.msg import TFMessage
 from geometry_msgs.msg import TwistWithCovarianceStamped, PoseStamped
 from ublox_msgs.msg import NavPVT
+from hardware_monitor2_interfaces.srv import Logging
+
+GPS_TOPIC = "/ublox_gps_node/fix"
+
 
 class RelayBridgeNode(Node):
     def __init__(self):
@@ -39,16 +43,14 @@ class RelayBridgeNode(Node):
 
         self.subscribed_topics = {}
         self._last_topics = None
+        self.logging_client = self.create_client(Logging, "/logging")
+        self.logging_request_queue = queue.Queue()
+        self.logging_request_timer = self.create_timer(0.05, self.process_logging_requests)
 
         # 토픽 목록 변경 감지: 주기적으로 확인해 바뀌면 relay로 재전송
         self.topic_check_timer = self.create_timer(3.0, self.check_topic_changes)
-
-        self.create_subscription(
-            NavSatFix,
-            "/ublox_gps_node/fix",
-            self.gps_callback,
-            10
-        )
+        self.gps_subscription = None
+        self.sync_gps_subscription()
 
         self.loop = asyncio.new_event_loop()
 
@@ -57,16 +59,47 @@ class RelayBridgeNode(Node):
 
     def start_loop(self):
         asyncio.set_event_loop(self.loop)
-        self.loop.run_until_complete(self.connect())
-        
-    # gps callback 함수 (gps 값은 무조건 받도록)
+        self.connect_task = self.loop.create_task(self.connect())
+        try:
+            self.loop.run_until_complete(self.connect_task)
+        except asyncio.CancelledError:
+            pass
+        finally:
+            self.loop.close()
+
+    def stop_loop(self):
+        task = getattr(self, "connect_task", None)
+        if task is not None and not task.done() and self.loop.is_running():
+            self.loop.call_soon_threadsafe(task.cancel)
+        self.thread.join(timeout=5.0)
+
+    def sync_gps_subscription(self):
+        """실제 GPS publisher가 존재하는 동안에만 GPS를 구독한다."""
+        has_publisher = bool(self.get_publishers_info_by_topic(GPS_TOPIC))
+
+        if has_publisher and self.gps_subscription is None:
+            self.gps_subscription = self.create_subscription(
+                NavSatFix,
+                GPS_TOPIC,
+                self.gps_callback,
+                10,
+            )
+            self.get_logger().info(f"GPS publisher detected: subscribed to {GPS_TOPIC}")
+        elif not has_publisher and self.gps_subscription is not None:
+            self.destroy_subscription(self.gps_subscription)
+            self.gps_subscription = None
+            self.get_logger().info(
+                f"GPS publisher disappeared: unsubscribed from {GPS_TOPIC}"
+            )
+
+    # GPS publisher가 실제로 있을 때만 호출되는 callback
     def gps_callback(self, msg):
         if not hasattr(self, "ws") or self.ws is None:
             return
-        
+
         data = {
             "type": "sensor_data",
-            "topic": "/ublox_gps_node/fix",
+            "topic": GPS_TOPIC,
             "data": {
                 "lat": msg.latitude,
                 "lon": msg.longitude,
@@ -114,11 +147,14 @@ class RelayBridgeNode(Node):
                             if not topic:
                                 self.get_logger().warn(f"Invalid unsubscribe message: {data}")
                                 return
-    
+
                             self.topic_unsubscription(topic)
 
                         elif data["type"] == "get_topic_list":
                             await self.send_topic_list()
+
+                        elif data["type"] == "logging_request":
+                            self.handle_logging_request(data)
 
             except Exception as e:
                 self.ws = None
@@ -128,21 +164,138 @@ class RelayBridgeNode(Node):
 
     # 차량 등록
     async def register_vehicle(self, ws):
-        parsed = urlparse(self.server_url)
-        host = parsed.hostname
-        rosbridge_ip = f"ws://{host}:9090"
-
         msg = {
             "type": "register",
             "role": "vehicle",
             "vehicle_id": self.vehicle_id,
-            "rosbridge_ip": rosbridge_ip,
             "is_bag": self.is_bag
         }
 
         await ws.send(json.dumps(msg))
 
-        self.get_logger().info(f"Vehicle registered with rosbridge: {rosbridge_ip}")
+        self.get_logger().info("Vehicle registered with relay server")
+
+    def handle_logging_request(self, data):
+        request_id = data.get("request_id")
+        command = data.get("is_logging")
+        topics = data.get("topics", [])
+        bag_name = data.get("bag_name", "")
+
+        if not request_id:
+            self.get_logger().warning("logging_request missing request_id")
+            return
+
+        if command not in ("LoggingStart", "LoggingStop"):
+            self.send_logging_response(
+                request_id, success=False, error=f"Invalid logging command: {command}"
+            )
+            return
+
+        if not isinstance(topics, list) or not all(isinstance(topic, str) for topic in topics):
+            self.send_logging_response(
+                request_id, success=False, error="topics must be a string array"
+            )
+            return
+
+        if not isinstance(bag_name, str):
+            self.send_logging_response(
+                request_id, success=False, error="bag_name must be a string"
+            )
+            return
+
+        self.get_logger().info(
+            f"logging request queued: request_id={request_id} "
+            f"command={command} topics={len(topics)} bag_name={bag_name!r}"
+        )
+        self.logging_request_queue.put({
+            "request_id": request_id,
+            "command": command,
+            "topics": topics,
+            "bag_name": bag_name,
+            "deadline": time.monotonic() + 5.0,
+        })
+
+    def process_logging_requests(self):
+        try:
+            data = self.logging_request_queue.get_nowait()
+        except queue.Empty:
+            return
+
+        request_id = data["request_id"]
+        if not self.logging_client.service_is_ready():
+            if time.monotonic() < data["deadline"]:
+                self.logging_request_queue.put(data)
+                return
+
+            self.get_logger().error(
+                f"/logging service unavailable: request_id={request_id}"
+            )
+            self.send_logging_response(
+                request_id, success=False, error="/logging service is unavailable"
+            )
+            return
+
+        request = Logging.Request()
+        request.is_logging = data["command"]
+        request.topics = data["topics"]
+        request.bag_name = data["bag_name"]
+
+        future = self.logging_client.call_async(request)
+        future.add_done_callback(
+            lambda completed, rid=request_id: self.logging_done_callback(rid, completed)
+        )
+        self.get_logger().info(
+            f"/logging service called: request_id={request_id} command={data['command']}"
+        )
+
+    def logging_done_callback(self, request_id, future):
+        try:
+            response = future.result()
+            self.get_logger().info(
+                f"/logging response: request_id={request_id} success={response.success} "
+                f"is_logging={response.is_logging} status={response.logging_status} "
+                f"bag_path={response.bag_path}"
+            )
+            self.send_logging_response(
+                request_id,
+                success=response.success,
+                logging_status=response.logging_status,
+                is_logging=response.is_logging,
+                bag_path=response.bag_path,
+                message=response.message,
+                error="" if response.success else response.message,
+            )
+        except Exception as exc:
+            self.get_logger().error(f"/logging service call failed: {exc}")
+            self.send_logging_response(request_id, success=False, error=str(exc))
+
+    def send_logging_response(
+        self,
+        request_id,
+        success,
+        logging_status="",
+        is_logging=False,
+        bag_path="",
+        message="",
+        error="",
+    ):
+        if not hasattr(self, "ws") or self.ws is None:
+            return
+
+        payload = {
+            "type": "logging_response",
+            "request_id": request_id,
+            "success": success,
+            "logging_status": logging_status,
+            "is_logging": is_logging,
+            "bag_path": bag_path,
+            "message": message,
+            "error": error,
+        }
+        asyncio.run_coroutine_threadsafe(
+            self.ws.send(json.dumps(payload)),
+            self.loop,
+        )
 
     # 차량의 모든 토픽 목록 + 타입 가져오기
     async def send_topic_list(self):
@@ -163,6 +316,8 @@ class RelayBridgeNode(Node):
 
     # 토픽 목록 변경 감지 후 relay로 재전송
     def check_topic_changes(self):
+        self.sync_gps_subscription()
+
         if not hasattr(self, "ws") or self.ws is None:
             return
 
@@ -188,16 +343,20 @@ class RelayBridgeNode(Node):
         if topic in self.subscribed_topics:
             self.get_logger().info(f"⚠️ Already subscribed: {topic}")
             return
-        
+
         topic_type = get_message(msg_type)
 
         if not topic_type:
             self.get_logger().warn(f"❌ Unknown type: {msg_type}")
             return
-        
+
         self.get_logger().info(f"🔥 Subscribing to {topic}")
 
-        if topic == "/ublox_gps_node/fix":
+        if topic == GPS_TOPIC:
+            if self.gps_subscription is None:
+                self.get_logger().warning(
+                    f"GPS subscription skipped because {GPS_TOPIC} has no publisher"
+                )
             return
 
         sub = self.create_subscription(
@@ -295,15 +454,21 @@ class RelayBridgeNode(Node):
 
     # 토픽 구독 해제
     def topic_unsubscription(self, topic):
+        if topic == GPS_TOPIC:
+            self.get_logger().info(
+                f"Persistent GPS unsubscribe ignored: {GPS_TOPIC}"
+            )
+            return
+
         if topic not in self.subscribed_topics:
             return
-        
+
         sub = self.subscribed_topics.pop(topic)
         self.destroy_subscription(sub)
 
         self.get_logger().info(f"❌ Unsubscribed: {topic}")
 
-        
+
 def main(args=None):
     rclpy.init(args=args)
     node = RelayBridgeNode()
@@ -313,10 +478,10 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        node.loop.call_soon_threadsafe(node.loop.stop)
-        node.thread.join()
+        node.stop_loop()
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":
