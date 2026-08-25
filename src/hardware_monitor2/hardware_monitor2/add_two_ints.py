@@ -83,6 +83,28 @@ class RosbagLoggingServer(Node):
         self.current_bag_path = ""
         self.current_log_path = ""
 
+    def archive_log(self, output_path):
+        source_path = self.current_log_path
+        self.close_log()
+
+        if not source_path or not os.path.isfile(source_path):
+            return ""
+        if not output_path or not os.path.isdir(output_path):
+            return source_path
+
+        destination_path = os.path.join(output_path, "rosbag.log")
+        try:
+            os.replace(source_path, destination_path)
+            self.get_logger().info(f"rosbag log archived: {destination_path}")
+            return destination_path
+        except Exception as exc:
+            self.get_logger().warning(
+                f"failed to archive rosbag log: source={source_path} "
+                f"destination={destination_path} error={exc}"
+            )
+            return source_path
+
+
     def wait_for_start(self):
         deadline = time.monotonic() + 5.0
         while time.monotonic() < deadline:
@@ -220,6 +242,7 @@ class RosbagLoggingServer(Node):
                 )
 
             return_code = self.bag_proc.returncode
+            archived_log_path = self.archive_log(output_path)
             self.clear_process()
             metadata_exists = os.path.isfile(os.path.join(output_path, "metadata.yaml"))
             message = (
@@ -229,7 +252,8 @@ class RosbagLoggingServer(Node):
             )
             self.get_logger().info(
                 f"ros2 bag recording stopped: bag={output_path} "
-                f"return_code={return_code} metadata={metadata_exists}"
+                f"return_code={return_code} metadata={metadata_exists} "
+                f"log={archived_log_path}"
             )
             return self.respond(
                 response, True, False, "LoggingStop", output_path, message
@@ -253,9 +277,11 @@ class RosbagLoggingServer(Node):
             f"ros2 bag stopped unexpectedly: bag={bag_path} return_code={code}"
             + (f" details={details}" if details else "")
         )
+        self.archive_log(bag_path)
         self.clear_process()
 
     def destroy_node(self):
+        bag_path = self.current_bag_path
         try:
             if self.bag_proc is not None and self.bag_proc.poll() is None:
                 self.get_logger().info(
@@ -263,9 +289,9 @@ class RosbagLoggingServer(Node):
                 )
                 self.stop_process()
         finally:
+            self.archive_log(bag_path)
             self.clear_process()
         return super().destroy_node()
-
 
 def main():
     rclpy.init()
