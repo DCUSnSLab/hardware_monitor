@@ -13,12 +13,7 @@ from rosidl_runtime_py import message_to_ordereddict
 from rosidl_runtime_py.utilities import get_message
 from sensor_msgs_py import point_cloud2
 
-from sensor_msgs.msg import NavSatFix, JointState, Imu, PointCloud2, CameraInfo, CompressedImage, Temperature
-from hunter_msgs.msg import HunterStatus
-from nav_msgs.msg import Odometry
-from tf2_msgs.msg import TFMessage
-from geometry_msgs.msg import TwistWithCovarianceStamped, PoseStamped
-from ublox_msgs.msg import NavPVT
+from sensor_msgs.msg import NavSatFix, PointCloud2, CompressedImage
 from hardware_monitor2_interfaces.srv import Logging
 
 GPS_TOPIC = "/ublox_gps_node/fix"
