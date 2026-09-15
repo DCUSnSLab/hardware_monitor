@@ -4,7 +4,6 @@ import websockets
 import json
 import os
 import threading
-import queue
 import time
 
 from rclpy.node import Node
@@ -17,6 +16,7 @@ from hardware_monitor2_interfaces.srv import Logging
 
 from relay_bridge.frames import encode_pointcloud, encode_compressed_image
 from relay_bridge.bag_player import BagPlayer, read_bag_duration
+from relay_bridge.logging_manager import LoggingManager
 
 GPS_TOPIC = "/ublox_gps_node/fix"
 
@@ -52,9 +52,15 @@ class RelayBridgeNode(Node):
 
         self.subscribed_topics = {}
         self._last_topics = None
-        self.logging_client = self.create_client(Logging, "/logging")
-        self.logging_request_queue = queue.Queue()
-        self.logging_request_timer = self.create_timer(0.05, self.process_logging_requests)
+
+        # 로깅은 LoggingManager가 담당(/logging 서비스 호출 + 요청 큐 + 응답 생성).
+        # 서비스 클라이언트와 로거, 전송 콜백(_send_json)을 주입한다.
+        self.logging = LoggingManager(
+            self.create_client(Logging, "/logging"),
+            self.get_logger(),
+            self._send_json,
+        )
+        self.logging_timer = self.create_timer(0.05, self.logging.process)
 
         # bag 재생은 BagPlayer가 담당(ros2 bag play 서브프로세스 + 위치 추정 + 상태 dict 생성).
         self.bag_player = BagPlayer(self.vehicle_id, self.get_logger())
@@ -168,7 +174,7 @@ class RelayBridgeNode(Node):
                             await self.send_topic_list()
 
                         elif data["type"] == "logging_request":
-                            self.handle_logging_request(data)
+                            self.logging.handle_request(data)
 
                         # bag 파일 목록 요청 → 실제 BAG_DIR 조회 후 응답
                         elif data["type"] == "bag_list_request":
@@ -267,127 +273,13 @@ class RelayBridgeNode(Node):
             self.loop
         )
 
-    def handle_logging_request(self, data):
-        request_id = data.get("request_id")
-        command = data.get("is_logging")
-        topics = data.get("topics", [])
-        bag_name = data.get("bag_name", "")
-
-        if not request_id:
-            self.get_logger().warning("logging_request missing request_id")
-            return
-
-        if command not in ("LoggingStart", "LoggingStop"):
-            self.send_logging_response(
-                request_id, success=False, error=f"Invalid logging command: {command}"
+    # LoggingManager 등이 응답 dict를 보낼 때 쓰는 공용 전송 헬퍼(ws 연결 시에만).
+    def _send_json(self, payload):
+        if hasattr(self, "ws") and self.ws is not None:
+            asyncio.run_coroutine_threadsafe(
+                self.ws.send(json.dumps(payload)),
+                self.loop,
             )
-            return
-
-        if not isinstance(topics, list) or not all(isinstance(topic, str) for topic in topics):
-            self.send_logging_response(
-                request_id, success=False, error="topics must be a string array"
-            )
-            return
-
-        if not isinstance(bag_name, str):
-            self.send_logging_response(
-                request_id, success=False, error="bag_name must be a string"
-            )
-            return
-
-        self.get_logger().info(
-            f"logging request queued: request_id={request_id} "
-            f"command={command} topics={len(topics)} bag_name={bag_name!r}"
-        )
-        self.logging_request_queue.put({
-            "request_id": request_id,
-            "command": command,
-            "topics": topics,
-            "bag_name": bag_name,
-            "deadline": time.monotonic() + 5.0,
-        })
-
-    def process_logging_requests(self):
-        try:
-            data = self.logging_request_queue.get_nowait()
-        except queue.Empty:
-            return
-
-        request_id = data["request_id"]
-        if not self.logging_client.service_is_ready():
-            if time.monotonic() < data["deadline"]:
-                self.logging_request_queue.put(data)
-                return
-
-            self.get_logger().error(
-                f"/logging service unavailable: request_id={request_id}"
-            )
-            self.send_logging_response(
-                request_id, success=False, error="/logging service is unavailable"
-            )
-            return
-
-        request = Logging.Request()
-        request.is_logging = data["command"]
-        request.topics = data["topics"]
-        request.bag_name = data["bag_name"]
-
-        future = self.logging_client.call_async(request)
-        future.add_done_callback(
-            lambda completed, rid=request_id: self.logging_done_callback(rid, completed)
-        )
-        self.get_logger().info(
-            f"/logging service called: request_id={request_id} command={data['command']}"
-        )
-
-    def logging_done_callback(self, request_id, future):
-        try:
-            response = future.result()
-            self.get_logger().info(
-                f"/logging response: request_id={request_id} success={response.success} "
-                f"is_logging={response.is_logging} status={response.logging_status} "
-                f"bag_path={response.bag_path}"
-            )
-            self.send_logging_response(
-                request_id,
-                success=response.success,
-                logging_status=response.logging_status,
-                is_logging=response.is_logging,
-                bag_path=response.bag_path,
-                message=response.message,
-                error="" if response.success else response.message,
-            )
-        except Exception as exc:
-            self.get_logger().error(f"/logging service call failed: {exc}")
-            self.send_logging_response(request_id, success=False, error=str(exc))
-
-    def send_logging_response(
-        self,
-        request_id,
-        success,
-        logging_status="",
-        is_logging=False,
-        bag_path="",
-        message="",
-        error="",
-    ):
-        if not hasattr(self, "ws") or self.ws is None:
-            return
-
-        payload = {
-            "type": "logging_response",
-            "request_id": request_id,
-            "success": success,
-            "logging_status": logging_status,
-            "is_logging": is_logging,
-            "bag_path": bag_path,
-            "message": message,
-            "error": error,
-        }
-        asyncio.run_coroutine_threadsafe(
-            self.ws.send(json.dumps(payload)),
-            self.loop,
-        )
 
     # 차량의 모든 토픽 목록 + 타입 가져오기
     # bag이 로드된 동안에는 bag의 토픽 목록(metadata 기준)을 고정으로 보낸다(정지해도 안 바뀜).
